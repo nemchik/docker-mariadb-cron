@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bash
+
+# install cron
+apt-get update
+apt-get install -y cron
+
+# make folders
+mkdir -p \
+	/config/crontabs \
+	/config/dumps
+
+# import user crontabs
+crontab -u abc /config/crontabs/mysqldump
+
+# cleanup
+rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
